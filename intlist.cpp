@@ -125,11 +125,22 @@ int IntList::count() const {
 IntList& IntList::operator=(const IntList& source){
     if(this == &source) return *this;
 
-    IntList temp(source);
+    Node* curr = head;
+    while(curr){
+        Node* next = curr->next;
+        delete curr;
+        curr=next;
+    }
+    head = tail = nullptr;
 
-    std::swap(head, temp.head);
-    std::swap(tail, temp.tail);
+    if(source.head == nullptr) return *this;
 
+    head = new Node {source.head->info, nullptr};
+    tail = head;
+    for(Node* s = source.head->next; s!= nullptr; s = s->next){
+        tail->next = new Node {s->info, nullptr};
+        tail=tail->next;
+    }
     return *this;
 }
 
