@@ -6,6 +6,7 @@
 #include "intlist.h"
 
 #include <iostream>
+#include <utility>
 using std::cout;
 
 // copy constructor
@@ -32,6 +33,7 @@ IntList::~IntList() {
         delete prev;
         prev=curr;
     }
+    head = tail = nullptr;
 }
 
 
