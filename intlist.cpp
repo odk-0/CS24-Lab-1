@@ -27,11 +27,10 @@ IntList::IntList(const IntList& source) {
 // destructor deletes all nodes
 IntList::~IntList() {
     Node* curr=head;
-    Node* prev=head;
     while(curr){
-        curr=curr->next;
-        delete prev;
-        prev=curr;
+        Node* next = curr->next;
+        delete curr;
+        curr=next;
     }
     head = tail = nullptr;
 }
